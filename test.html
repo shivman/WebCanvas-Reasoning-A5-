@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Gemini API Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .api-section {
+            border: 1px solid #ddd;
+            padding: 20px;
+            border-radius: 5px;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 8px;
+            margin: 5px 0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        button {
+            background-color: #4285f4;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #3367d6;
+        }
+        #response {
+            margin-top: 20px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            background-color: #f8f9fa;
+            white-space: pre-wrap;
+        }
+        .error {
+            color: #f44336;
+        }
+        .success {
+            color: #4caf50;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="api-section">
+            <h2>Gemini API Test</h2>
+            <input type="text" id="apiKey" placeholder="Enter your Gemini API Key">
+            <button id="testButton">Test API Connection</button>
+            <div id="response"></div>
+        </div>
+    </div>
+
+    <script src="test-api.js"></script>
+    <script>
+        const apiKeyInput = document.getElementById('apiKey');
+        const testButton = document.getElementById('testButton');
+        const responseDiv = document.getElementById('response');
+
+        testButton.addEventListener('click', async () => {
+            const apiKey = apiKeyInput.value.trim();
+            if (!apiKey) {
+                responseDiv.textContent = 'Please enter an API key';
+                responseDiv.className = 'error';
+                return;
+            }
+
+            // Update the API key in the test file
+            const testScript = document.querySelector('script[src="test-api.js"]');
+            const newScript = document.createElement('script');
+            newScript.textContent = testScript.textContent.replace('YOUR_API_KEY', apiKey);
+            document.body.removeChild(testScript);
+            document.body.appendChild(newScript);
+
+            // Run the test
+            responseDiv.textContent = 'Testing API connection...';
+            responseDiv.className = '';
+            
+            try {
+                await testGeminiAPI();
+                responseDiv.textContent = 'API Connection Successful! Check console for details.';
+                responseDiv.className = 'success';
+            } catch (error) {
+                responseDiv.textContent = 'Error: ' + error.message;
+                responseDiv.className = 'error';
+            }
+        });
+    </script>
+</body>
+</html> 

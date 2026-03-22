@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>WebCanvas 3.0 LLM</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="container">
+    <h1>WebCanvas 3.0 LLM</h1>
+    
+    <!-- API Key Section -->
+    <div class="api-key-section">
+      <div class="input-group">
+        <input type="password" id="apiKey" placeholder="Enter your Gemini API key" />
+        <button id="saveApiKey" class="button">Save Key</button>
+      </div>
+      <div class="api-links">
+        <a href="https://makersuite.google.com/app/apikey" target="_blank" class="link">Get an API key →</a>
+        <a href="#" id="testApiLink" class="link">Test API Key</a>
+      </div>
+      <div id="apiKeyStatus" class="status"></div>
+    </div>
+
+    <!-- Drawing Status -->
+    <div class="status-section">
+      <div class="status-indicator" id="statusIndicator"></div>
+      <span id="statusText">Inactive</span>
+      <div id="errorMessage" class="error hidden"></div>
+    </div>
+
+    <!-- Drawing Controls -->
+    <div class="controls-section">
+      <button id="activateBtn" class="button">
+        <span>📝</span>
+        <span>Activate Drawing</span>
+      </button>
+      <button id="deactivateBtn" class="button hidden">
+        <span>❌</span>
+        <span>Deactivate Drawing</span>
+      </button>
+      <button id="clearBtn" class="button">
+        <span>🗑️</span>
+        <span>Clear Canvas</span>
+      </button>
+      <button id="refreshBtn" class="button">
+        <span>🔄</span>
+        <span>Refresh</span>
+      </button>
+    </div>
+
+    <!-- AI Features -->
+    <div class="ai-features">
+      <h3>AI Features</h3>
+      <button id="analyzeBtn" class="button">
+        <span>🔍</span>
+        <span>Analyze Drawing</span>
+      </button>
+      <button id="suggestBtn" class="button">
+        <span>💡</span>
+        <span>Get Suggestions</span>
+      </button>
+      <button id="promptBtn" class="button">
+        <span>✨</span>
+        <span>Generate Drawing Prompt</span>
+      </button>
+      <div id="aiResponse" class="ai-response hidden"></div>
+    </div>
+
+    <!-- Keyboard Shortcuts -->
+    <div class="shortcuts">
+      <p><strong>Keyboard Shortcuts:</strong></p>
+      <p>Alt + D: Toggle drawing mode</p>
+      <p>Esc: Hide canvas</p>
+      <p>Alt + C: Clear canvas</p>
+    </div>
+  </div>
+  <script src="popup.js"></script>
+</body>
+</html> 
